@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>DorisParser</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/net.sourceforge.czt.dev/java-cup -->
+        <dependency>
+            <groupId>net.sourceforge.czt.dev</groupId>
+            <artifactId>java-cup</artifactId>
+            <version>0.11-a-czt02-cdh</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sourceforge.czt.dev</groupId>
+            <artifactId>java-cup-runtime</artifactId>
+            <version>0.11-a-czt01-cdh</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.12.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.12.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.12.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--jcup-->
+            <!--<plugin>
+                <groupId>net.sourceforge.czt.dev</groupId>
+                <artifactId>cup-maven-plugin</artifactId>
+                <version>1.6-cdh</version>
+                <executions>
+                    <execution>
+                        <id>cup</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    &lt;!&ndash;<cupDefinition>${doris.home}/gensrc/parser/sql_parser.cup</cupDefinition>&ndash;&gt;
+                    <className>SqlParser</className>
+                    <symbolsName>SqlParserSymbols</symbolsName>
+                    <expectedConflicts>0</expectedConflicts>
+                    &lt;!&ndash;<outputDirectory>src/main/java</outputDirectory>&ndash;&gt;
+                </configuration>
+            </plugin>-->
+
+            <!--<plugin>
+                <groupId>de.jflex</groupId>
+                <artifactId>maven-jflex-plugin</artifactId>
+                <version>1.4.3</version>
+                <executions>
+                    <execution>
+                        <id>jflex</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            &lt;!&ndash; lexDefinitions &ndash;&gt;
+                            &lt;!&ndash;<lexDefinition>${doris.home}/gensrc/parser/sql_scanner.flex</lexDefinition>&ndash;&gt;
+                            &lt;!&ndash; /lexDefinitions &ndash;&gt;
+                            &lt;!&ndash;<outputDirectory>src/main/java</outputDirectory>&ndash;&gt;
+                            <backup>false</backup>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
+        </plugins>
+    </build>
+</project>
