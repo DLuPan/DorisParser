@@ -21,15 +21,11 @@ import com.lfsenior.sql.parser.doris.analysis.EmptyStmt;
 import com.lfsenior.sql.parser.doris.common.AnalysisException;
 import com.lfsenior.sql.parser.doris.analysis.SqlParser;
 import com.lfsenior.sql.parser.doris.analysis.StatementBase;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 // Utils about SQL parser
 public class SqlParserUtils {
-
-    private static final Logger LOG = LogManager.getLogger(SqlParserUtils.class);
 
     // parse origin statement and get the first one.
     // Doris supports "multi-statement" protocol of MySQL, so when receiving the origin statement like:

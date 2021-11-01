@@ -19,8 +19,6 @@ package com.lfsenior.sql.parser.doris.catalog;
 
 import com.google.common.base.Preconditions;
 import com.google.gson.annotations.SerializedName;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Objects;
 
@@ -35,7 +33,6 @@ import java.util.Objects;
  * indicating that any decimal type is a subtype of the decimal type.
  */
 public class ScalarType extends Type {
-    private static final Logger LOG = LogManager.getLogger(ScalarType.class);
 
     // SQL allows the engine to pick the default precision. We pick the largest
     // precision that is supported by the smallest decimal type in the BE (4 bytes).
@@ -135,7 +132,6 @@ public class ScalarType extends Type {
             case LARGEINT:
                 return LARGEINT;
             default:
-                LOG.warn("type={}", type);
                 Preconditions.checkState(false);
                 return NULL;
         }
@@ -182,7 +178,6 @@ public class ScalarType extends Type {
             case "LARGEINT":
                 return LARGEINT;
             default:
-                LOG.warn("type={}", type);
                 Preconditions.checkState(false);
                 return NULL;
         }

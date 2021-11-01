@@ -25,12 +25,12 @@ import java.util.List;
 import java.util.Map;
 
 
-import com.lfsenior.sqlparser.doris.catalog.AggregateType;
-import com.lfsenior.sqlparser.doris.catalog.KeysType;
-import com.lfsenior.sqlparser.doris.catalog.ScalarType;
-import com.lfsenior.sqlparser.doris.catalog.Type;
-import com.lfsenior.sqlparser.doris.common.AnalysisException;
-import com.lfsenior.sqlparser.doris.common.Version;
+import com.lfsenior.sql.parser.doris.catalog.AggregateType;
+import com.lfsenior.sql.parser.doris.catalog.KeysType;
+import com.lfsenior.sql.parser.doris.catalog.ScalarType;
+import com.lfsenior.sql.parser.doris.catalog.Type;
+import com.lfsenior.sql.parser.doris.common.AnalysisException;
+import com.lfsenior.sql.parser.doris.common.Version;
 
 
 import com.google.common.collect.Lists;

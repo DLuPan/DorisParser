@@ -17,16 +17,12 @@
 
 package com.lfsenior.sql.parser.doris.analysis;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 /**
  * @author wangcong
  * @version 1.0
  * @date 2020/10/7 10:32 上午
  */
 public class CreateTableLikeStmt extends DdlStmt {
-    private static final Logger LOG = LogManager.getLogger(CreateTableLikeStmt.class);
 
     private final boolean ifNotExists;
     private final TableName tableName;

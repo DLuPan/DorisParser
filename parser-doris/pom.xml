@@ -14,7 +14,6 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <doris.home>${basedir}/../../</doris.home>
     </properties>
 
     <dependencies>
@@ -35,24 +34,6 @@
             <artifactId>guava</artifactId>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -66,13 +47,31 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
 
     <build>
         <finalName>parser-dors</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.dat</include>
+                    <include>**/*.interp</include>
+                    <include>**/*.tokens</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.yml</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
         <plugins>
             <!--jcup-->
             <plugin>
@@ -93,7 +92,7 @@
                     <className>SqlParser</className>
                     <symbolsName>SqlParserSymbols</symbolsName>
                     <expectedConflicts>0</expectedConflicts>
-                    <outputDirectory>${doris.home}/src/main/java</outputDirectory>
+                    <outputDirectory>${basedir}/src/main/java</outputDirectory>
                 </configuration>
             </plugin>
 
@@ -109,15 +108,15 @@
                         <goals>
                             <goal>generate</goal>
                         </goals>
-                        <configuration>
-                            <!-- lexDefinitions -->
-                            <!--<lexDefinition>${doris.home}/gensrc/parser/sql_scanner.flex</lexDefinition>-->
-                            <!-- /lexDefinitions -->
-                            <outputDirectory>${doris.home}/src/main/java</outputDirectory>
-                            <backup>false</backup>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <!-- lexDefinitions -->
+                    <!--<lexDefinition>${doris.home}/gensrc/parser/sql_scanner.flex</lexDefinition>-->
+                    <!-- /lexDefinitions -->
+                    <outputDirectory>${basedir}/src/main/java</outputDirectory>
+                    <backup>false</backup>
+                </configuration>
             </plugin>
         </plugins>
     </build>

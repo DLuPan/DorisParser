@@ -1,4 +1,64 @@
-package com.lfsenior.sql.parser.doris;
+### 1、parser-dorse版本对照
+
+| parser-dorse版本 | doris版本      | 备注 |
+| ---------------- | -------------- | ---- |
+| master           | 0.14.0-release |      |
+
+
+
+### 2、单独编译
+
+```shell
+mvn clean package -Dmvn.skip.test=true
+```
+
+
+
+### 3、使用
+
+编译后上传到私服就可以通过mvn来引用了
+
+```xml
+<dependency>
+    <groupId>com.lfsenior.sql.parser</groupId>
+    <artifactId>parser-doris</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+
+<dependency>
+    <groupId>net.sourceforge.czt.dev</groupId>
+    <artifactId>java-cup</artifactId>
+    <version>0.11-a-czt02-cdh</version>
+</dependency>
+
+<dependency>
+    <groupId>net.sourceforge.czt.dev</groupId>
+    <artifactId>java-cup-runtime</artifactId>
+    <version>0.11-a-czt01-cdh</version>
+</dependency>
+
+<dependency>
+    <groupId>com.google.guava</groupId>
+    <artifactId>guava</artifactId>
+    <version>29.0-jre</version>
+</dependency>
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.8.6</version>
+</dependency>
+
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.16</version>
+</dependency>
+```
+
+demo
+
+```java
+package com.lfsenior.parser;
 
 import com.lfsenior.sql.parser.doris.analysis.SqlParser;
 import com.lfsenior.sql.parser.doris.analysis.SqlScanner;
@@ -10,14 +70,13 @@ import java.io.StringReader;
 import java.util.List;
 
 /**
- * @program: DorisParser
- * @package: com.lfsenior.sql.parser.doris
- * @description: DorisSql解析测试
+ * @program: Antlr4ForClickHouse
+ * @package: com.lfsenior.parser
+ * @description:
  * @author: DingLuPan
- * @create: 2021/11/1 15:05
+ * @create: 2021/11/1 16:42
  **/
-public class DorisSqlParserTest {
-
+public class DorisSqlParser {
     @Test
     public void createTableTest() throws Exception {
         String sql = "CREATE TABLE `doris_example` ( \n" +
@@ -74,7 +133,7 @@ public class DorisSqlParserTest {
     @Test
     public void alterTableAddColumnTest() throws Exception {
         String sql = "ALTER TABLE doris_example ADD COLUMN (user_name  varchar(400) NULL COMMENT \"用户名称\")";
-        SqlScanner sqlScanner = new SqlScanner(new StringReader(sql), 0l);
+        SqlScanner sqlScanner = new SqlScanner(new StringReader(sql), 0L);
         SqlParser sqlParser = new SqlParser(sqlScanner);
         List<StatementBase> multiStmts = SqlParserUtils.getMultiStmts(sqlParser);
         System.out.println(multiStmts.toString());
@@ -98,3 +157,11 @@ public class DorisSqlParserTest {
         System.out.println(multiStmts.toString());
     }
 }
+
+```
+
+
+
+4、相关
+
+[实现](./doc/1、accomplish.md)

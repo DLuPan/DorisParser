@@ -20,8 +20,6 @@ package com.lfsenior.sql.parser.doris.analysis;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import lombok.Data;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +27,6 @@ import java.util.Map;
 
 @Data
 public class CreateTableStmt extends DdlStmt {
-    private static final Logger LOG = LogManager.getLogger(CreateTableStmt.class);
 
     private static final String DEFAULT_ENGINE_NAME = "olap";
 

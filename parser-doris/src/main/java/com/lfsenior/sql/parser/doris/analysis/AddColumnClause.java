@@ -19,8 +19,6 @@ package com.lfsenior.sql.parser.doris.analysis;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
@@ -28,7 +26,6 @@ import java.util.Map;
 @Getter
 @Setter
 public class AddColumnClause extends AlterTableClause {
-    private static final Logger LOG = LogManager.getLogger(AddColumnClause.class);
     private ColumnDef columnDef;
     // Column position
     private ColumnPosition colPos;
