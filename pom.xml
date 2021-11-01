@@ -4,115 +4,150 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>DorisParser</artifactId>
+    <groupId>com.lfsenior.sql.parser</groupId>
+    <artifactId>parent</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <modules>
+        <module>parser-clickhouse</module>
+        <module>parser-doris</module>
+        <module>ast-common</module>
+    </modules>
+    <packaging>pom</packaging>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-    <dependencies>
-        <!-- https://mvnrepository.com/artifact/net.sourceforge.czt.dev/java-cup -->
-        <dependency>
-            <groupId>net.sourceforge.czt.dev</groupId>
-            <artifactId>java-cup</artifactId>
-            <version>0.11-a-czt02-cdh</version>
-        </dependency>
 
-        <dependency>
-            <groupId>net.sourceforge.czt.dev</groupId>
-            <artifactId>java-cup-runtime</artifactId>
-            <version>0.11-a-czt01-cdh</version>
-        </dependency>
+    <profiles>
+        <!-- for custom internal repository -->
+        <profile>
+            <id>custom-env</id>
+            <activation>
+                <property>
+                    <name>env.CUSTOM_MAVEN_REPO</name>
+                </property>
+            </activation>
 
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>29.0-jre</version>
-        </dependency>
+            <repositories>
+                <repository>
+                    <id>custom-nexus</id>
+                    <url>${env.CUSTOM_MAVEN_REPO}</url>
+                </repository>
+            </repositories>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.12.1</version>
-        </dependency>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>custom-nexus</id>
+                    <url>${env.CUSTOM_MAVEN_REPO}</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.12.1</version>
-        </dependency>
+        <!-- for general repository -->
+        <profile>
+            <id>general-env</id>
+            <activation>
+                <property>
+                    <name>!env.CUSTOM_MAVEN_REPO</name>
+                </property>
+            </activation>
 
-        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.12.1</version>
-        </dependency>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <name>central maven repo https</name>
+                    <url>https://repo.maven.apache.org/maven2</url>
+                </repository>
+                <!-- for java-cup -->
+                <repository>
+                    <id>cloudera-public</id>
+                    <url>https://repository.cloudera.com/artifactory/public/</url>
+                </repository>
+                <!-- for bdb je -->
+                <repository>
+                    <id>oracleReleases</id>
+                    <url>http://download.oracle.com/maven</url>
+                </repository>
+            </repositories>
 
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.6</version>
-        </dependency>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>spring-plugins</id>
+                    <url>https://repo.spring.io/plugins-release/</url>
+                </pluginRepository>
+                <!-- for cup-maven-plugin -->
+                <pluginRepository>
+                    <id>cloudera-public</id>
+                    <url>https://repository.cloudera.com/artifactory/public/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.16</version>
-        </dependency>
-    </dependencies>
 
-    <build>
-        <plugins>
-            <!--jcup-->
-            <!--<plugin>
+    <dependencyManagement>
+        <dependencies>
+            <!-- https://mvnrepository.com/artifact/net.sourceforge.czt.dev/java-cup -->
+            <dependency>
                 <groupId>net.sourceforge.czt.dev</groupId>
-                <artifactId>cup-maven-plugin</artifactId>
-                <version>1.6-cdh</version>
-                <executions>
-                    <execution>
-                        <id>cup</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    &lt;!&ndash;<cupDefinition>${doris.home}/gensrc/parser/sql_parser.cup</cupDefinition>&ndash;&gt;
-                    <className>SqlParser</className>
-                    <symbolsName>SqlParserSymbols</symbolsName>
-                    <expectedConflicts>0</expectedConflicts>
-                    &lt;!&ndash;<outputDirectory>src/main/java</outputDirectory>&ndash;&gt;
-                </configuration>
-            </plugin>-->
+                <artifactId>java-cup</artifactId>
+                <version>0.11-a-czt02-cdh</version>
+            </dependency>
 
-            <!--<plugin>
-                <groupId>de.jflex</groupId>
-                <artifactId>maven-jflex-plugin</artifactId>
-                <version>1.4.3</version>
-                <executions>
-                    <execution>
-                        <id>jflex</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            &lt;!&ndash; lexDefinitions &ndash;&gt;
-                            &lt;!&ndash;<lexDefinition>${doris.home}/gensrc/parser/sql_scanner.flex</lexDefinition>&ndash;&gt;
-                            &lt;!&ndash; /lexDefinitions &ndash;&gt;
-                            &lt;!&ndash;<outputDirectory>src/main/java</outputDirectory>&ndash;&gt;
-                            <backup>false</backup>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>-->
-        </plugins>
-    </build>
+            <dependency>
+                <groupId>net.sourceforge.czt.dev</groupId>
+                <artifactId>java-cup-runtime</artifactId>
+                <version>0.11-a-czt01-cdh</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>29.0-jre</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>2.12.1</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>2.12.1</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>2.12.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.16</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.13</version>
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
 </project>
