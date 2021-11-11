@@ -124,6 +124,18 @@
                 <artifactId>junit</artifactId>
                 <version>4.13</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4</artifactId>
+                <version>4.9.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.9</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

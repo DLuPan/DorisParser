@@ -1,4 +1,4 @@
-package com.lfsenior.sql.parser.clickhouse;
+package com.lfsenior.sql.parser.clickhouse.antlr4;
 
 import java.util.HashSet;
 import java.util.Set;
