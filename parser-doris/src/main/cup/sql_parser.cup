@@ -1134,7 +1134,7 @@ type ::=
   | KW_BITMAP
   {: RESULT = Type.BITMAP; :}
   | KW_STRING
-  {: RESULT = ScalarType.createVarcharType(-1); :}
+  {: RESULT = Type.STRING; :}
   | KW_VARCHAR LPAREN INTEGER_LITERAL:len RPAREN
   {: ScalarType type = ScalarType.createVarcharType(len.intValue());
      type.setAssignedStrLenInColDefinition();
