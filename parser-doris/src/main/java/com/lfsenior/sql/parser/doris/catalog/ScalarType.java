@@ -306,6 +306,9 @@ public class ScalarType extends Type {
             case VARCHAR:
                 stringBuilder.append("varchar").append("(").append(len).append(")");
                 break;
+            case STRING:
+                stringBuilder.append("string");
+                break;
             case DECIMAL:
                 stringBuilder.append("decimal").append("(").append(precision).append(", ").append(scale).append(")");
                 break;
