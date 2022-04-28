@@ -3,19 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>parent</artifactId>
-        <groupId>com.lfsenior.sql.parser</groupId>
+        <artifactId>parser</artifactId>
+        <groupId>com.lfsenior.sql</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ast-common</artifactId>
+    <artifactId>parser-facade</artifactId>
 
-    <description>AST的公共定义</description>
+    <description>所有解析的门面入口，通过门面模式来统一对外提供能力，同时采用SPI注入的形式提供对外实现</description>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
 
 </project>
