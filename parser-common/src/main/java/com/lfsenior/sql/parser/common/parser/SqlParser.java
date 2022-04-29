@@ -1,4 +1,4 @@
-package com.lfsenior.sql.parser.common.facade;
+package com.lfsenior.sql.parser.common.parser;
 
 /**
  * <b><code>Parser</code></b>
@@ -9,6 +9,5 @@ package com.lfsenior.sql.parser.common.facade;
  *
  * @author LFSenior
  */
-public interface Parser {
-
+public interface SqlParser {
 }

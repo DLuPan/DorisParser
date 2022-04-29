@@ -134,5 +134,8 @@ public abstract class AbstractSQLObject implements SQLObject {
         return MapUtils.unmodifiableMap(attributes);
     }
 
-
+    @Override
+    public SQLObject clone() {
+        return null;
+    }
 }

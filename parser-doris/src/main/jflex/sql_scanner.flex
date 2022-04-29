@@ -134,7 +134,7 @@ import com.lfsenior.sql.parser.doris.common.util.SqlUtils;
         keywordMap.put("connection", new Integer(SqlParserSymbols.KW_CONNECTION));
         keywordMap.put("connection_id", new Integer(SqlParserSymbols.KW_CONNECTION_ID));
         keywordMap.put("consistent", new Integer(SqlParserSymbols.KW_CONSISTENT));
-        keywordMap.put("convert", new Integer(SqlParserSymbols.KW_CONVERT));
+        keywordMap.put("command", new Integer(SqlParserSymbols.KW_CONVERT));
         keywordMap.put("count", new Integer(SqlParserSymbols.KW_COUNT));
         keywordMap.put("create", new Integer(SqlParserSymbols.KW_CREATE));
         keywordMap.put("cross", new Integer(SqlParserSymbols.KW_CROSS));

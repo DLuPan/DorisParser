@@ -82,6 +82,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--解析相关依赖组件-->
+            <dependency>
+                <groupId>com.lfsenior.sql</groupId>
+                <artifactId>parser-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/net.sourceforge.czt.dev/java-cup -->
             <dependency>
                 <groupId>net.sourceforge.czt.dev</groupId>

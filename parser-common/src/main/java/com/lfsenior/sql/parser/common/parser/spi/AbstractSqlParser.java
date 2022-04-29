@@ -1,7 +1,7 @@
-package com.lfsenior.sql.parser.common.facade.spi;
+package com.lfsenior.sql.parser.common.parser.spi;
 
 import com.lfsenior.sql.parser.common.ast.SQLStatement;
-import com.lfsenior.sql.parser.common.facade.Parser;
+import com.lfsenior.sql.parser.common.parser.SqlParser;
 import com.lfsenior.sql.parser.common.type.DbType;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
@@ -18,13 +18,13 @@ import java.util.List;
  * @author LFSenior
  */
 @Slf4j
-public abstract class AbstractParser implements Parser {
+public abstract class AbstractSqlParser implements SqlParser {
     /*单次解析的最大AST数量*/
     private static final int MAX_AST_NUM = 8;
     /*引擎类型*/
     private DbType dbType;
 
-    protected AbstractParser(DbType dbType) {
+    protected AbstractSqlParser(DbType dbType) {
         this.dbType = dbType;
     }
 
@@ -42,7 +42,7 @@ public abstract class AbstractParser implements Parser {
         if (CollectionUtils.isNotEmpty(sqlStatements)) {
             return sqlStatements.get(0);
         }
-        log.info("[parser] 解析SQL结束,耗时:[{}ms]<<<<<<<<<", System.currentTimeMillis() - start);
+        log.info("[parser] 解析SQL结束,耗时:[{}ms]>>>>>>>>>", System.currentTimeMillis() - start);
         return null;
     }
 
@@ -51,7 +51,7 @@ public abstract class AbstractParser implements Parser {
         List<SQLStatement> sqlStatementList = null;
         long start = System.currentTimeMillis();
         sqlStatementList = doParser(sql, MAX_AST_NUM);
-        log.info("[parser] 解析SQL结束,耗时:[{}ms]<<<<<<<<<", System.currentTimeMillis() - start);
+        log.info("[parser] 解析SQL结束,耗时:[{}ms]>>>>>>>>>", System.currentTimeMillis() - start);
         return sqlStatementList;
     }
 

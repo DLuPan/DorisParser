@@ -1,4 +1,4 @@
-package com.lfsenior.sql.parser.common.ast.statement;
+package com.lfsenior.sql.parser.common.ast;
 
 import com.lfsenior.sql.parser.common.type.DbType;
 
@@ -11,6 +11,6 @@ import com.lfsenior.sql.parser.common.type.DbType;
  *
  * @author LFSenior
  */
-public interface SQLDbTypeObject {
+public interface SQLDbType {
     DbType getDbType();
 }

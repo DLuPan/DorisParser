@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * @author LFSenior
  */
-public interface SQLObject extends Cloneable {
+public interface SQLObject {
     /**
      * 接受访问者调用
      *
