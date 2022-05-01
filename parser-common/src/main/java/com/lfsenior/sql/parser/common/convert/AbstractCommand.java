@@ -18,7 +18,7 @@ public abstract class AbstractCommand implements Command {
     /*指令接收者*/
     private Receiver receiver;
     /**/
-    private String commandId = "COMMAND";
+    private String commandId = "Convert";
 
     protected AbstractCommand(Receiver receiver, String suffix) {
         this.receiver = receiver;

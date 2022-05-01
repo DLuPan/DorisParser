@@ -1,4 +1,8 @@
-package com.lfsenior.sql.parser.common.ast;
+package com.lfsenior.sql.parser.common.ast.expression;
+
+import com.lfsenior.sql.parser.common.ast.AbstractSQLObject;
+import com.lfsenior.sql.parser.common.ast.SQLExpr;
+import com.lfsenior.sql.parser.common.ast.SQLObject;
 
 import java.util.List;
 

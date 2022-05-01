@@ -2,6 +2,8 @@ package com.lfsenior.sql.parser.common.visitor;
 
 import com.lfsenior.sql.parser.common.ast.SQLIdentifierExpr;
 import com.lfsenior.sql.parser.common.ast.SQLObject;
+import com.lfsenior.sql.parser.common.ast.statement.SQLAlterTableAddColumn;
+import com.lfsenior.sql.parser.common.ast.statement.SQLTableSource;
 
 /**
  * <b><code>SQLASTVisitor</code></b>
@@ -14,20 +16,37 @@ import com.lfsenior.sql.parser.common.ast.SQLObject;
  */
 public interface SQLASTVisitor extends SQLASTListener {
     /// SQLObject访问者
-    default boolean visit(SQLObject sqlObject) {
+    default boolean visit(SQLObject sql) {
         return true;
     }
 
-    default boolean endVisit(SQLObject sqlObject) {
+    default boolean endVisit(SQLObject sql) {
         return true;
     }
 
     /// SQLIdentifierExpr访问者
-    default boolean visit(SQLIdentifierExpr sqlIdentifierExpr) {
+    default boolean visit(SQLIdentifierExpr sql) {
         return true;
     }
 
-    default void endVisit(SQLIdentifierExpr sqlIdentifierExpr) {
+    default void endVisit(SQLIdentifierExpr sql) {
+    }
+
+
+    /// SQLTableSource
+    default boolean visit(SQLTableSource sql) {
+        return true;
+    }
+
+    default void endVisit(SQLTableSource sql) {
+    }
+
+    /// SQLAlterTableAddColumn
+    default boolean visit(SQLAlterTableAddColumn sql) {
+        return true;
+    }
+
+    default void endVisit(SQLAlterTableAddColumn sql) {
     }
 
 }

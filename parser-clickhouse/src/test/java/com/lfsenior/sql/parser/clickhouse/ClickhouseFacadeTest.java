@@ -1,12 +1,7 @@
 package com.lfsenior.sql.parser.clickhouse;
 
 import com.lfsenior.sql.parser.ClickhouseSqlParser;
-import com.lfsenior.sql.parser.clickhouse.antlr4.ClickHouseErrorListener;
-import com.lfsenior.sql.parser.clickhouse.antlr4.ClickHouseLexer;
-import com.lfsenior.sql.parser.clickhouse.antlr4.ClickHouseParser;
 import com.lfsenior.sql.parser.common.ast.SQLStatement;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.Test;
 
 import java.util.List;
@@ -21,13 +16,19 @@ import java.util.List;
  * @author LFSenior
  */
 public class ClickhouseFacadeTest {
+    public static String alterTableSql = "ALTER TABLE test.ck_example ON CLUSTER cluster_frontend_crm_special MODIFY COLUMN seller_id String COMMENT '人员ID';";
+
     @Test
     public void alterTableModifyColumnTest() throws Exception {
-        String sql = "ALTER TABLE ck_example ON CLUSTER cluster_frontend_crm_special MODIFY COLUMN seller_id String COMMENT '人员ID';";
-        sql += sql;
+        alterTableSql += alterTableSql;
         /*通过指令来运行*/
         ClickhouseSqlParser ckParser = new ClickhouseSqlParser();
-        List<SQLStatement> sqlStatementList = ckParser.parserList(sql);
+        List<SQLStatement> sqlStatementList = ckParser.parserList(alterTableSql);
         System.out.println(sqlStatementList);
+    }
+
+    @Test
+    public void alterTableByWrapperAdapterTest() {
+
     }
 }
