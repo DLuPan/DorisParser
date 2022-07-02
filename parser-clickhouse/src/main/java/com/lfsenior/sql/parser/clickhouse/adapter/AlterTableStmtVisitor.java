@@ -7,6 +7,8 @@ import com.lfsenior.sql.parser.common.ast.statement.AbstractTableSource;
 import com.lfsenior.sql.parser.common.ast.statement.SQLAlterTableItem;
 import com.lfsenior.sql.parser.common.ast.statement.SQLAlterTableStatement;
 import com.lfsenior.sql.parser.common.ast.statement.SQLTableSource;
+import com.lfsenior.sql.parser.common.dialect.ast.statement.ClickHouseSQLAlterTableStatement;
+import com.lfsenior.sql.parser.common.dialect.ast.statement.ClickHouseSQLClusterClause;
 import com.lfsenior.sql.parser.common.type.DbType;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
@@ -22,16 +24,18 @@ import org.antlr.v4.runtime.tree.RuleNode;
  */
 public class AlterTableStmtVisitor extends ClickHouseParserBaseVisitor<SQLAlterTableStatement> {
     /*标准返回构建*/
-    private SQLAlterTableStatement alterTableStatement;
+    private ClickHouseSQLAlterTableStatement alterTableStatement;
 
     @Override
     public SQLAlterTableStatement visitChildren(RuleNode node) {
-        alterTableStatement = new SQLAlterTableStatement(DbType.Clickhouse);
+        alterTableStatement = new ClickHouseSQLAlterTableStatement();
         for (int i = 0; i < node.getChildCount(); i++) {
             ParseTree cNode = node.getChild(i);
             Object sqlNode = DefaultWrapperAdapterLinked.execute(cNode);
             if (sqlNode instanceof SQLTableSource) {
                 alterTableStatement.setTableSource((SQLTableSource) sqlNode);
+            } else if (sqlNode instanceof ClickHouseSQLClusterClause) {
+                alterTableStatement.setClusterClause((ClickHouseSQLClusterClause) sqlNode);
             } else if (sqlNode instanceof SQLAlterTableItem) {
                 alterTableStatement.addItem((SQLAlterTableItem) sqlNode);
             }

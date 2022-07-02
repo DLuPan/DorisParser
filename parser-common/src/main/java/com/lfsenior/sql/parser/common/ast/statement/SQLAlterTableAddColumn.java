@@ -11,14 +11,13 @@ import java.util.List;
  * <b><code>SQLAlterTableAddColumn</code></b>
  * <p/>
  * add column定义
- * todo 待完成
  * <p/>
  * <b>Creation Time:</b> 2022/5/1 11:05.
  *
  * @author LFSenior
  */
 public class SQLAlterTableAddColumn extends AbstractSQLObject implements SQLAlterTableItem {
-    private final List<SQLColumnDefinition> columns = new ArrayList<SQLColumnDefinition>();
+    private final List<SQLColumnDefinition> columns = new ArrayList<>();
 
     @Override
     protected void accept0(SQLASTVisitor visitor) {
